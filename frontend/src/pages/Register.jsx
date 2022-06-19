@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+//!useSelector is used to select something from state for eg. user, isLoading, isError
+//!useDispatch is used to dispatch an action or function to the store to the store
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -23,6 +25,7 @@ function Register() {
     (state) => state.auth
   )
 
+  //useEffect will fire off whenever user, isError, isSuccess, message, navigate , dispatch changes
   useEffect(() => {
     if (isError) {
       toast.error(message)
@@ -34,6 +37,9 @@ function Register() {
 
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
+  
+
+  //! if you set value to the state inputs, you need to take care of the event happening at the input, so when we type onChange fires off and we need to update the state
 
   const onChange = (e) => {
     setFormData((prevState) => ({
